@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Coupons
+ */
+-->
+
+<config>
+    <modules>
+        <Amasty_Coupons>
+            <version>1.4.3</version>
+        </Amasty_Coupons>
+    </modules>
+    
+    <admin>
+    </admin>
+    
+    <frontend>
+        <routers>
+            <amcoupons>
+                <use>standard</use>
+                <args>
+                    <module>Amasty_Coupons</module>
+                    <frontName>amcoupons</frontName>
+                </args>
+            </amcoupons>
+            <checkout>
+                <args>
+                    <modules>
+                        <Amasty_Coupons before="Mage_Checkout">Amasty_Coupons</Amasty_Coupons>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+        <translate>
+            <modules>
+                <Amasty_Coupons>
+                    <files>
+                        <default>Amasty_Coupons.csv</default>
+                    </files>
+                </Amasty_Coupons>
+            </modules>
+        </translate>
+    </frontend>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <Amasty_Coupons>
+                    <files>
+                        <default>Amasty_Coupons.csv</default>
+                    </files>
+                </Amasty_Coupons>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <amcoupons translate="title" module="amcoupons">
+                                            <title>Multiple Coupons</title>
+                                        </amcoupons>
+                                    </children>
+                                </config>
+                            </children>
+                        </system> 
+                     </children>
+                </admin> 
+            </resources>
+        </acl>
+        
+        <!-- PGL (petr.glu@hotmail.com) - field added to sales_rule form configuration -->
+	    <events>
+			<adminhtml_promo_quote_edit_tab_main_prepare_form>
+				<observers>
+					<amcoupons_admin>
+						<type>singleton</type>
+						<class>Amasty_Coupons_Model_Admin_Observer</class>
+						<method>salesrulePrepareForm</method>
+					</amcoupons_admin>
+				</observers>
+			</adminhtml_promo_quote_edit_tab_main_prepare_form>
+		</events>			
+    </adminhtml>
+
+    <global>    
+        <models>
+            <amcoupons>
+                <class>Amasty_Coupons_Model</class>
+                <resourceModel>amcoupons_mysql4</resourceModel>
+            </amcoupons>
+            <!-- HYL-40 - Temporary fix, disabling the duplicate rewrite and having TBT extend their class -->
+            <!--<sales>-->
+                <!--<rewrite>-->
+                    <!--<quote>Amasty_Coupons_Model_Sales_Quote</quote>-->
+                <!--</rewrite>-->
+            <!--</sales>-->
+            <salesrule>
+                <rewrite>
+                    <validator>Amasty_Coupons_Model_SalesRule_Validator</validator>
+                </rewrite>
+            </salesrule>
+            <salesrule_mysql4>
+                <rewrite>
+                    <rule_collection>Amasty_Coupons_Model_SalesRule_Mysql4_Rule_Collection</rule_collection>
+                </rewrite>
+            </salesrule_mysql4>
+        </models>
+		<resources>
+             <amcoupons_setup>
+                <setup>
+                    <module>Amasty_Coupons</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amcoupons_setup>
+		    <amcoupons_write>
+		        <connection><use>core_write</use></connection>
+		    </amcoupons_write>
+		    <amcoupons_read>
+		        <connection><use>core_read</use></connection>
+		    </amcoupons_read>
+		</resources>
+        <blocks>
+            <amcoupons>
+                <class>Amasty_Coupons_Block</class>
+            </amcoupons>
+
+            <checkout>
+                <rewrite>
+                    <cart_coupon>Amasty_Coupons_Block_Rewrite_Cart_Coupon</cart_coupon>
+                </rewrite>
+            </checkout>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create_coupons>Amasty_Coupons_Block_Rewrite_Adminhtml_Coupon</sales_order_create_coupons>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <amcoupons>
+                <class>Amasty_Coupons_Helper</class>
+            </amcoupons>
+        </helpers>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <amcoupons>
+                        <class>amcoupons/observer</class>
+                        <method>handleSalesOrderPlaceAfter</method>
+                    </amcoupons>
+                </observers>
+            </sales_order_place_after>
+            <salesrule_validator_process>
+                <observers>
+                    <amcoupons>
+                        <type>singleton</type>
+                        <class>amcoupons/observer</class>
+                        <method>handleSalesruleValidatorProcess</method>
+                    </amcoupons>
+                </observers>
+            </salesrule_validator_process>              
+        </events>         
+    </global>
+    <default>
+        <amcoupons>
+           <codes>
+                <code>111, 222,5ABCD, BIG2</code>
+                <allow_same_rule>0</allow_same_rule>
+                <max_num_coupons>0</max_num_coupons>
+           </codes>
+        </amcoupons>
+    </default>
+</config>

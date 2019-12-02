@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_RulesPro
+ */
+-->
+<config>
+    <modules>
+        <Amasty_RulesPro>
+            <version>1.11.0</version>
+        </Amasty_RulesPro>
+    </modules>
+	
+    <adminhtml>
+        <translate>
+            <modules>
+                <Amasty_RulesPro>
+                    <files>
+                        <default>Amasty_RulesPro.csv</default>
+                    </files>
+                </Amasty_RulesPro>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <global>
+        <models>
+            <enterprise_customersegment>
+                <rewrite>
+                    <observer>Amasty_RulesPro_Model_Customersegment_Observer</observer>
+                </rewrite>
+            </enterprise_customersegment>
+			<amrulespro>
+                <class>Amasty_RulesPro_Model</class>
+            </amrulespro>
+        </models>
+
+        <events>
+            <salesrule_rule_condition_combine>
+                <observers>
+                    <amasty_rulespro_model_observer>
+                        <type>singleton</type>
+                        <class>amrulespro/observer</class>
+                        <method>handleNewConditions</method>
+                    </amasty_rulespro_model_observer>
+                </observers>
+            </salesrule_rule_condition_combine>
+        </events>
+    </global>
+
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_PromoBannersLite
+ */
+-->
+<config>
+    <translate>
+        <modules>
+            <Amasty_PromoBannersLite>
+                <files>
+                    <default>Amasty_PromoBannersLite.csv</default>
+                </files>
+            </Amasty_PromoBannersLite>
+        </modules>
+    </translate>
+</config>

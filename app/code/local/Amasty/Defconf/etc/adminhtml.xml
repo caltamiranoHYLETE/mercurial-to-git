@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Defconf
+ */
+--> 
+<config>
+    <translate>
+        <modules>
+            <Amasty_Conf>
+                <files>
+                    <default>Amasty_Defconf.csv</default>
+                </files>
+            </Amasty_Conf>
+        </modules>
+    </translate>
+</config> 

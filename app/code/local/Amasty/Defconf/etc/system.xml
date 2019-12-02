@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Defconf
+ */
+-->
+<config>
+    <sections>
+        <amdefconf translate="label" module="amdefconf">
+            <label>Configurable Preselect</label>
+            <tab>amasty</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>11033</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <preselect translate="label comment">
+                            <label>Preselect for All Products</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amdefconf/source_preselect_options</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </preselect>
+                        <preload_image translate="label comment">
+                            <label>Preload Image Block from Simple Product on Product Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </preload_image>
+                    </fields>
+                </general>
+            </groups>
+        </amdefconf>
+    </sections>
+</config>

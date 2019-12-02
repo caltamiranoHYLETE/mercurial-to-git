@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Coupons
+ */
+--> 
+<config>
+        <translate>
+            <modules>
+                <Amasty_Coupons>
+                    <files>
+                        <default>Amasty_Coupons.csv</default>
+                    </files>
+                </Amasty_Coupons>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <amcoupons translate="title" module="amcoupons">
+                                            <title>Multiple Coupons</title>
+                                        </amcoupons>
+                                    </children>
+                                </config>
+                            </children>
+                        </system> 
+                     </children>
+                </admin> 
+            </resources>
+        </acl>
+</config> 

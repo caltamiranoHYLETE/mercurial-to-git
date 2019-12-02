@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_RuleTimeConditions
+ */
+-->
+
+<config>
+    <modules>
+        <Amasty_RuleTimeConditions>
+            <version>1.0.2</version>
+        </Amasty_RuleTimeConditions>
+    </modules>
+
+    <global>
+        <models>
+            <amruletimeconditions>
+                <class>Amasty_RuleTimeConditions_Model</class>
+            </amruletimeconditions>
+            <salesrule_resource>
+                <rewrite>
+                    <rule_collection>Amasty_RuleTimeConditions_Model_Resource_Rule_Collection</rule_collection>
+                </rewrite>
+            </salesrule_resource>
+        </models>
+        <resources>
+            <amruletimeconditions_setup>
+                <setup>
+                    <module>Amasty_RuleTimeConditions</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amruletimeconditions_setup>
+            <amruletimeconditions_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </amruletimeconditions_write>
+            <amruletimeconditions_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </amruletimeconditions_read>
+        </resources>
+        <helpers>
+            <amruletimeconditions>
+                <class>Amasty_RuleTimeConditions_Helper</class>
+            </amruletimeconditions>
+        </helpers>
+        <events>
+            <adminhtml_promo_quote_edit_tab_main_prepare_form>
+                <observers>
+                    <amasty_ruletimecontidions_model_observer>
+                        <class>amruletimeconditions/observer</class>
+                        <method>handleFormTimeCreation</method>
+                    </amasty_ruletimecontidions_model_observer>
+                </observers>
+            </adminhtml_promo_quote_edit_tab_main_prepare_form>
+            <salesrule_rule_save_before>
+                <observers>
+                    <amasty_ruletimecontidions_model_observer>
+                        <type>singleton</type>
+                        <class>amruletimeconditions/observer</class>
+                        <method>saveBefore</method>
+                    </amasty_ruletimecontidions_model_observer>
+                </observers>
+            </salesrule_rule_save_before>
+        </events>
+    </global>
+</config>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Defconf
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Defconf>
+            <version>1.3.0</version>
+        </Amasty_Defconf>
+    </modules>
+    
+    <frontend>
+        <translate>
+            <modules>
+                <Amasty_Defconf>
+                    <files>
+                        <default>Amasty_Defconf.csv</default>
+                    </files>
+                </Amasty_Defconf>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <amdefconf>
+                    <file>amdefconf.xml</file>
+                </amdefconf>
+            </updates>
+        </layout>
+
+        <blocks>
+            <amdefconf>
+                <class>Amasty_Defconf_Block</class>
+            </amdefconf>
+        </blocks>
+    </frontend>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <Amasty_Defconf>
+                    <files>
+                        <default>Amasty_Defconf.csv</default>
+                    </files>
+                </Amasty_Defconf>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <amdefconf translate="title" module="amdefconf">
+                                            <title>Configurable Preselec</title>
+                                        </amdefconf>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    
+    <global>
+        <models>
+            <amdefconf>
+                <class>Amasty_Defconf_Model</class>
+                <resourceModel>amdefconf_mysql4</resourceModel>
+            </amdefconf>
+            
+            <amdefconf_mysql4>
+                <class>Amasty_Defconf_Model_Mysql4</class>
+            </amdefconf_mysql4>
+
+        </models>
+        
+		<resources>
+             <amdefconf_setup>
+                <setup>
+                    <module>Amasty_Defconf</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amdefconf_setup>
+		    <amdefconf_write>
+		        <connection><use>core_write</use></connection>
+		    </amdefconf_write>
+		    <amdefconf_read>
+		        <connection><use>core_read</use></connection>
+		    </amdefconf_read>
+		</resources>
+		  
+        <blocks>
+            <amdefconf>
+                <class>Amasty_Defconf_Block</class>
+            </amdefconf>
+
+            <catalog>
+                <rewrite>
+                    <product_view_media>Amasty_Defconf_Block_Catalog_Product_View_Media</product_view_media>
+                </rewrite>
+            </catalog>
+            
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tab_super_config>Amasty_Defconf_Block_Adminhtml_Catalog_Product_Edit_Tab_Super_Config</catalog_product_edit_tab_super_config>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        
+        <helpers>
+            <amdefconf>
+                <class>Amasty_Defconf_Helper</class>
+            </amdefconf>
+        </helpers>
+        
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <amdefconf>
+                        <type>singleton</type>
+                        <class>amdefconf/observer</class>
+                        <method>onCatalogProductSaveAfter</method>
+                    </amdefconf>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+    </global>
+</config>
