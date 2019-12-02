@@ -31,4 +31,6 @@
  */
 if (function_exists('libxml_disable_entity_loader')) {
     libxml_disable_entity_loader(false);
+
+//    small edit for the sake of committing more commits
 }
