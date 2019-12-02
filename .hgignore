@@ -1,0 +1,25 @@
+
+/media/
+app/etc/local.xml
+/.idea/
+/forms/
+/var/
+/forms/feeds/cpc_feed.xml
+/forms/feeds/ready_pulse_product_feed.xml
+/forms/create/create.php
+/forms/js/config.js
+/forms/config.php
+dev/
+js/mage/
+lib/
+downloader/
+app/locale/
+syntax: glob
+media/
+var/
+shell/
+includes/
+.idea/
+app/code/core/
+index.php
+app/mage.php
